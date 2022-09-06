@@ -26,7 +26,6 @@ window.addEventListener('load', () => {
 
   function searchSpinner() {
     searchBtn.addEventListener('click', () => {
-      console.log('click', progressBar)
       searchBtn.classList.toggle('top__search-btn--active');
       progressBar.classList.toggle('top__progress-line-bg--active');
       animate();
@@ -447,6 +446,7 @@ const changeSettings = () => {
     if (!search) return;
 
     const input = search.querySelector('.tracking-widget__input');
+    search.style.maxWidth = setWidth + 'px'
     input.style.height = setHeight + 'px'
 
     if (setType == 'contentShift')
@@ -481,6 +481,8 @@ const setSearch = () => {
   const overlay = document.querySelector('.tracking-widget .tracking-widget__inner')
   const btn = document.querySelector('.tracking-widget .top__search-btn')
   const close = document.querySelector('.tracking-widget .tracking-widget__btn')
+  const input = document.querySelector('.tracking-widget .tracking-widget__input')
+  const progress = document.querySelector('.tracking-widget .top__progress-line-bg')
 
   if (!search || !btn || !close || !overlay) return;
 
@@ -489,7 +491,10 @@ const setSearch = () => {
   })
 
   close.addEventListener('click', () => {
-    overlay.classList.remove('tracking-overlay-show')
+    overlay.classList.remove('tracking-overlay-show');
+    input.value = '';
+    btn.classList.remove('top__search-btn--active');
+    progress.classList.remove('top__progress-line-bg--active');
   })
 
 }
