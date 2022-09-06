@@ -7,12 +7,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Виджет отслеживания</title>
   <link rel="stylesheet" href="css/style.min.css">
-  <!-- <script src="js/main.min.js" defer></script> -->
+  <script src="js/main.min.js" defer></script>
 </head>
 
 <body>
   <section class="tracking-widget">
     <div class="container">
+      <div class="tracking-widget__top">
+        <div class="tracking-widget__top-input top">
+          <label class="tracking-widget__label">
+            <input class="tracking-widget__input" type="text" placeholder="введите название">
+          </label>
+          <button class="top__search-btn " type="submit">
+            <div class="top__btn-spiner" id="circularG">
+              <div id="circularG_1" class="circularG"></div>
+              <div id="circularG_2" class="circularG"></div>
+              <div id="circularG_3" class="circularG"></div>
+              <div id="circularG_4" class="circularG"></div>
+              <div id="circularG_5" class="circularG"></div>
+              <div id="circularG_6" class="circularG"></div>
+              <div id="circularG_7" class="circularG"></div>
+              <div id="circularG_8" class="circularG"></div>
+            </div>
+            <span class="top__btn-text">отследить</span>
+            <span class="top__btn-text--active">поиск</span>
+          </button>
+          <button class="tracking-widget__btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                fill="#263238" />
+            </svg>
+          </button>
+          <div class="top__progress-line-bg">
+            <div class="top__progress-line" id="top__progress-line"></div>
+          </div>
+        </div>
+        <div></div>
+      </div>
       <div class="tracking-widget__inner">
         <div class="tracking-widget__wrapper">
           <div class="tracking-widget__head">

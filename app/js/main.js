@@ -393,8 +393,9 @@ copyTx()
 const changeSettings = () => {
 
   const settings = document.querySelector('.settings');
+  const content = document.querySelector('.settings .tracking-widget__inner');
 
-  if (!settings) return;
+  if (!settings || !content) return;
 
   const lang = settings.querySelectorAll('input[name="settings_language"]');
   const width = settings.querySelector('#rangeWidth');
@@ -450,9 +451,9 @@ const changeSettings = () => {
     input.style.height = setHeight + 'px'
 
     if (setType == 'contentShift')
-      search.classList.remove('tracking-absolute')
+      content.classList.remove('tracking-widget--absolute')
     else
-      search.classList.add('tracking-absolute')
+      content.classList.add('tracking-widget--absolute')
 
 
     const frame = document.querySelector('.track-button-code');
@@ -463,7 +464,7 @@ const changeSettings = () => {
       data-search-height = ${setHeight}`
     if (setType != 'contentShift') {
       frame.value += `
-      data-search-class = 'tracking-absolute'
+      data-search-class = 'tracking-widget--absolute'
     </iframe>`
     } else {
       frame.value += `
@@ -477,6 +478,7 @@ const changeSettings = () => {
 changeSettings()
 
 const setSearch = () => {
+  console.log('setSearch')
   const search = document.querySelector('.tracking-widget')
   const overlay = document.querySelector('.tracking-widget .tracking-widget__inner')
   const btn = document.querySelector('.tracking-widget .top__search-btn')
@@ -484,14 +486,15 @@ const setSearch = () => {
   const input = document.querySelector('.tracking-widget .tracking-widget__input')
   const progress = document.querySelector('.tracking-widget .top__progress-line-bg')
 
+  console.log('search', search)
   if (!search || !btn || !close || !overlay) return;
 
   btn.addEventListener('click', () => {
-    overlay.classList.add('tracking-overlay-show')
+    overlay.classList.add('tracking-widget__inner-show')
   })
 
   close.addEventListener('click', () => {
-    overlay.classList.remove('tracking-overlay-show');
+    overlay.classList.remove('tracking-widget__inner-show');
     input.value = '';
     btn.classList.remove('top__search-btn--active');
     progress.classList.remove('top__progress-line-bg--active');

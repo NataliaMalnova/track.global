@@ -1,5 +1,9 @@
 .tracking-widget {
   padding: 40px 0;
+  max-width: 1140px;
+  position: relative;
+  background: #fff;
+  width: 100%;
 
   .container {
     @include for-470-px {
@@ -31,11 +35,22 @@
     }
   }
 
+  &--absolute {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 100;
+    background: #fff;
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 0;
+  }
+
   &__top {
     display: grid;
     grid-template-columns: minmax(500px, 1fr) minmax(300px, 354px);
     column-gap: 30px;
-    margin-bottom: 40px;
 
     @include for-1170-px {
       column-gap: 10px;
@@ -92,13 +107,24 @@
   }
 
   &__inner {
-    display: grid;
+    //display: grid;
     grid-template-columns: minmax(500px, 1fr) minmax(300px, 354px);
     column-gap: 30px;
+    display: none;
+    margin-top: 40px;
 
     @include for-1170-px {
       column-gap: 10px;
     }
+
+    @include for-1025-px {
+      // display: flex;
+      //  flex-direction: column;
+    }
+  }
+
+  &__inner-show {
+    display: grid;
 
     @include for-1025-px {
       display: flex;
