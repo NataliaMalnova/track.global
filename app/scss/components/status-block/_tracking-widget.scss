@@ -112,6 +112,7 @@
     column-gap: 30px;
     display: none;
     margin-top: 40px;
+    overflow: hidden;
 
     @include for-1170-px {
       column-gap: 10px;
