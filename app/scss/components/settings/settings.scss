@@ -1,24 +1,3 @@
-.settings-search.settings-search {
-  width: max-content;
-
-  .top__search-input {
-    width: 300px;
-  }
-
-  .top__search-btn {
-    min-width: 136px;
-  }
-
-  .top__search-label {
-    display: flex;
-    align-items: center;
-  }
-
-  .top__search-label::before {
-    top: auto;
-  }
-}
-
 .settings {
   margin-top: 40px;
   h3 {
@@ -297,44 +276,37 @@
   font-size: 14px;
 }
 
-.tracking-overlay {
+.settings .tracking-widget {
+  padding: 0;
+  margin: 0 auto;
+  display: block;
   margin-top: 40px;
-  display: none;
+  background: #fff;
+  z-index: 10;
+  max-width: 1140px;
+
+  .tracking-widget__inner {
+    display: none;
+    margin-bottom: 40px;
+  }
+  .tracking-overlay-show {
+    display: grid;
+
+    @include for-1025-px {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 
-.tracking-overlay__wrapper {
-  width: 100%;
-  border: 1px solid #e6e6e6;
-  padding: 0 20px;
-}
-
-.tracking-overlay--absolute {
+.settings .tracking-widget.tracking-absolute {
   position: absolute;
   left: 0;
+  right: 0;
+  margin: auto;
   z-index: 100;
   background: #fff;
   margin: 0 auto;
-  margin-top: 40px;
   width: 100%;
-}
-
-.tracking-absolute {
-  position: absolute;
-  left: 0;
-  z-index: 100;
-  background: #fff;
-  margin: 0 auto;
-  margin-top: 40px;
-  width: 100%;
-}
-
-.tracking-overlay-close {
-  display: flex;
-  justify-content: flex-end;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.tracking-overlay-show {
-  display: flex;
+  margin-top: 0;
 }

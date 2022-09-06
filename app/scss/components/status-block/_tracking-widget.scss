@@ -7,39 +7,55 @@
     }
   }
 
+  .top {
+    background: none;
+    padding-bottom: 0px;
+  }
+
+  .top__progress-line-bg {
+    bottom: -20px;
+  }
+
   @include for-470-px {
     padding: 10px 0 30px 0;
   }
 
-  &__top {
-    display: flex;
-    align-items: center;
-    margin-bottom: 28px;
+  .top__search-btn {
+    min-width: 136px;
+    margin-right: 20px;
 
     @include for-470-px {
-      margin-bottom: 10px;
-      padding: 0 10px;
+      min-width: 90px;
+      margin-right: 8px;
+      height: 40px;
     }
   }
 
+  &__top {
+    display: grid;
+    grid-template-columns: minmax(500px, 1fr) minmax(300px, 354px);
+    column-gap: 30px;
+    margin-bottom: 40px;
+
+    @include for-1170-px {
+      column-gap: 10px;
+    }
+
+    @include for-1025-px {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__top-input {
+    display: flex;
+    align-items: center;
+  }
+
   &__label {
-    max-width: 710px;
     width: 100%;
     margin-right: 20px;
     position: relative;
-
-    &::before {
-      content: "";
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      background-image: url("../images/icons/check.svg");
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
 
     @include for-769-px {
       margin-right: 10px;

@@ -3,6 +3,8 @@ const hamburger = () => {
   const hamburgerBtn = document.querySelector('.header__hamburger-btn');
   const menu = document.querySelector('.header__menu');
 
+  if (!hamburgerBtn || !menu) return;
+
   hamburgerBtn.addEventListener('click', () => {
     if (hamburgerBtn.classList.contains('header__hamburger-btn--active')) {
       hamburgerBtn.classList.remove('header__hamburger-btn--active');
@@ -24,6 +26,7 @@ window.addEventListener('load', () => {
 
   function searchSpinner() {
     searchBtn.addEventListener('click', () => {
+      console.log('click', progressBar)
       searchBtn.classList.toggle('top__search-btn--active');
       progressBar.classList.toggle('top__progress-line-bg--active');
       animate();
@@ -79,6 +82,8 @@ const removeFlag = () => {
   const langText = document.querySelector('.header__lang-text');
   const flagEn = document.querySelector('.header__lang-flag--en');
   const flagRu = document.querySelector('.header__lang-flag--ru');
+
+  if (!boxFlag || !dropDown || !langText || !flagEn || !flagRu) return
 
   boxFlag.addEventListener('click', () => {
     dropDown.classList.toggle('header__dropdown--active');
@@ -389,9 +394,8 @@ copyTx()
 const changeSettings = () => {
 
   const settings = document.querySelector('.settings');
-  const search = document.querySelector('.settings-search');
 
-  if (!settings || !search) return;
+  if (!settings) return;
 
   const lang = settings.querySelectorAll('input[name="settings_language"]');
   const width = settings.querySelector('#rangeWidth');
@@ -438,39 +442,24 @@ const changeSettings = () => {
 
   const changeSearch = () => {
 
-    const search = document.querySelector('.settings-search');
+    const search = document.querySelector('.tracking-widget');
 
     if (!search) return;
 
-    const btn = search.querySelector('.top__btn-text');
-    const btnActive = search.querySelector('.top__btn-text--active');
-    const input = search.querySelector('.top__search-input');
-
-    if (setLang == 'ru') {
-      btn.innerHTML = 'отследить'
-      btnActive.innerHTML = 'поиск'
-    } else {
-      btn.innerHTML = 'trace'
-      btnActive.innerHTML = 'Search'
-    }
-
-    input.style.width = setWidth + 'px'
+    const input = search.querySelector('.tracking-widget__input');
     input.style.height = setHeight + 'px'
 
-    const overlay = document.querySelector('.tracking-overlay');
-
     if (setType == 'contentShift')
-      overlay.classList.remove('tracking-overlay--absolute')
+      search.classList.remove('tracking-absolute')
     else
-      overlay.classList.add('tracking-overlay--absolute')
+      search.classList.add('tracking-absolute')
 
 
     const frame = document.querySelector('.track-button-code');
 
-    frame.value = `<iframe src = 'https://devtracking.ru/iframe' frameborder = "0" width = "500" height = "500" 
+    frame.value = `<iframe src = 'https://devtracking.ru/iframe' frameborder = "0" width = "${setWidth}" height = "500" 
       data-search-carrier = '${setCarrier }'
       data-search-lang = '${setLang }'
-      data-search-width = ${setWidth}
       data-search-height = ${setHeight}`
     if (setType != 'contentShift') {
       frame.value += `
@@ -488,14 +477,14 @@ const changeSettings = () => {
 changeSettings()
 
 const setSearch = () => {
-  const search = document.querySelector('.settings-search .top__search-btn')
+  const search = document.querySelector('.tracking-widget')
+  const overlay = document.querySelector('.tracking-widget .tracking-widget__inner')
+  const btn = document.querySelector('.tracking-widget .top__search-btn')
+  const close = document.querySelector('.tracking-widget .tracking-widget__btn')
 
-  const close = document.querySelector('.tracking-overlay .tracking-overlay-close')
-  const overlay = document.querySelector('.tracking-overlay')
+  if (!search || !btn || !close || !overlay) return;
 
-  if (!search || !overlay || !close) return;
-
-  search.addEventListener('click', () => {
+  btn.addEventListener('click', () => {
     overlay.classList.add('tracking-overlay-show')
   })
 
