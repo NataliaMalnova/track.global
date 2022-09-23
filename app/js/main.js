@@ -29,15 +29,41 @@ const setSearch = () => {
   console.log('search', search)
   if (!search || !btn || !close || !overlay) return;
 
-  btn.addEventListener('click', () => {
-    overlay.classList.add('tracking-widget__inner-show')
-  })
+  const postData = async (url, data) => {
+    let res = await fetch(url, {
+      method: "POST",
+      body: data
+    })
+    return await res.text()
+  }
+
 
   close.addEventListener('click', () => {
     overlay.classList.remove('tracking-widget__inner-show');
     input.value = '';
     btn.classList.remove('top__search-btn--active');
     progress.classList.remove('top__progress-line-bg--active');
+  })
+
+  search.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(search)
+    const response = postData('https://devtracking.ru/ajax-iframe', formData)
+      .then(res => {
+        console.log('ок')
+      })
+      .catch(() => console.log('no'))
+      .finally(() => {
+        overlay.classList.add('tracking-widget__inner-show')
+      })
+
+    //console.log('response ', response.json())
+    // if (response) {
+    //   overlay.innerHTML = ''
+    //   overlay = response
+    // }
+
   })
 
 }
