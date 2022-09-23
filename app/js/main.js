@@ -16,6 +16,34 @@ const hamburger = () => {
   })
 }
 hamburger();
+
+const setSearch = () => {
+  console.log('setSearch')
+  const search = document.querySelector('.tracking-widget')
+  const overlay = document.querySelector('.tracking-widget .tracking-widget__inner')
+  const btn = document.querySelector('.tracking-widget .top__search-btn')
+  const close = document.querySelector('.tracking-widget .tracking-widget__btn')
+  const input = document.querySelector('.tracking-widget .tracking-widget__input')
+  const progress = document.querySelector('.tracking-widget .top__progress-line-bg')
+
+  console.log('search', search)
+  if (!search || !btn || !close || !overlay) return;
+
+  btn.addEventListener('click', () => {
+    overlay.classList.add('tracking-widget__inner-show')
+  })
+
+  close.addEventListener('click', () => {
+    overlay.classList.remove('tracking-widget__inner-show');
+    input.value = '';
+    btn.classList.remove('top__search-btn--active');
+    progress.classList.remove('top__progress-line-bg--active');
+  })
+
+}
+
+
+
 window.addEventListener('load', () => {
   //поиск на кнопке start
   let elem = document.getElementById('top__progress-line');
@@ -56,6 +84,8 @@ window.addEventListener('load', () => {
       progressBar.classList.remove('top__progress-line-bg--active');
     }
   }
+
+  setSearch()
 })
 //поиск на кнопке End
 
@@ -476,30 +506,3 @@ const changeSettings = () => {
 }
 
 changeSettings()
-
-const setSearch = () => {
-  console.log('setSearch')
-  const search = document.querySelector('.tracking-widget')
-  const overlay = document.querySelector('.tracking-widget .tracking-widget__inner')
-  const btn = document.querySelector('.tracking-widget .top__search-btn')
-  const close = document.querySelector('.tracking-widget .tracking-widget__btn')
-  const input = document.querySelector('.tracking-widget .tracking-widget__input')
-  const progress = document.querySelector('.tracking-widget .top__progress-line-bg')
-
-  console.log('search', search)
-  if (!search || !btn || !close || !overlay) return;
-
-  btn.addEventListener('click', () => {
-    overlay.classList.add('tracking-widget__inner-show')
-  })
-
-  close.addEventListener('click', () => {
-    overlay.classList.remove('tracking-widget__inner-show');
-    input.value = '';
-    btn.classList.remove('top__search-btn--active');
-    progress.classList.remove('top__progress-line-bg--active');
-  })
-
-}
-
-setSearch()
