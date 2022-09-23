@@ -26,7 +26,6 @@ const setSearch = () => {
   const input = document.querySelector('.tracking-widget .tracking-widget__input')
   const progress = document.querySelector('.tracking-widget .top__progress-line-bg')
 
-  console.log('search', search)
   if (!search || !btn || !close || !overlay) return;
 
   const postData = async (url, data) => {
