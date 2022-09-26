@@ -48,20 +48,18 @@ const setSearch = () => {
     e.preventDefault();
 
     const formData = new FormData(search)
-    const response = postData('https://devtracking.ru/ajax-iframe', formData)
-      .then(res => {
-        console.log('ок')
+    const response = postData('/ajax-iframe', formData)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("result_ajax").innerHTML = data;
+
+        progress.classList.remove('top__progress-line-bg--active');
+        btn.classList.remove('top__search-btn--active');
       })
       .catch(() => console.log('no'))
       .finally(() => {
-        overlay.classList.add('tracking-widget__inner-show')
-      })
 
-    //console.log('response ', response.json())
-    // if (response) {
-    //   overlay.innerHTML = ''
-    //   overlay = response
-    // }
+      })
 
   })
 
@@ -89,10 +87,10 @@ window.addEventListener('load', () => {
   //анимация загрузки
   function animate() {
     idInterval = requestAnimationFrame(animate);
-    if (count < 80) {
+    if (count < 101) {
       count++
       elem.style.width = count + '%';
-    } else if (count = 80) {
+    } else if (count = 100) {
       cancelAnimationFrame(idInterval);
     }
   };
