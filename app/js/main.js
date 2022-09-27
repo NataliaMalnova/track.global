@@ -47,7 +47,11 @@ const setSearch = () => {
   search.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    const input = search.querySelector('input')
+    if (!input || input.value.toString().replace(/\s/g, '') == '') return;
+
     const formData = new FormData(search)
+
     const response = postData('/ajax-iframe', formData)
       .then(response => response.text())
       .then(data => {
@@ -65,8 +69,6 @@ const setSearch = () => {
 
 }
 
-
-
 window.addEventListener('load', () => {
   //поиск на кнопке start
   let elem = document.getElementById('top__progress-line');
@@ -74,9 +76,12 @@ window.addEventListener('load', () => {
   let idInterval;
   const searchBtn = document.querySelector('.top__search-btn');
   const progressBar = document.querySelector('.top__progress-line-bg');
+  const input = document.querySelector('.tracking-widget .tracking-widget__input');
 
   function searchSpinner() {
     searchBtn.addEventListener('click', () => {
+      if (!input || input.value.toString().replace(/\s/g, '') == '') return;
+
       searchBtn.classList.toggle('top__search-btn--active');
       progressBar.classList.toggle('top__progress-line-bg--active');
       animate();
