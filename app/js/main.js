@@ -42,7 +42,7 @@ const setSearch = () => {
 
   if (close) {
     close.addEventListener('click', () => {
-      overlay.classList.remove('tracking-widget__inner-show');
+      content.innerHTML = '';
       input.value = '';
       btn.classList.remove('top__search-btn--active');
       progress.classList.remove('top__progress-line-bg--active');
