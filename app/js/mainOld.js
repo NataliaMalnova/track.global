@@ -1,4 +1,4 @@
-//гамбургер меню
+//РіР°РјР±СѓСЂРіРµСЂ РјРµРЅСЋ
 const hamburger = () => {
   const hamburgerBtn = document.querySelector('.header__hamburger-btn');
   const menu = document.querySelector('.header__menu');
@@ -18,98 +18,102 @@ const hamburger = () => {
 hamburger();
 
 const setSearch = () => {
+  console.log('setSearch')
+  const search = document.querySelector('.tracking-widget')
+  const btn = document.querySelector('.tracking-widget .top__search-btn')
+  const close = document.querySelector('.tracking-widget .tracking-widget__btn')
+  const input = document.querySelector('.tracking-widget .tracking-widget__input')
+  const progress = document.querySelector('.tracking-widget .top__progress-line-bg')
 
-  const form = document.querySelector('.tracking-widget-form');
-
-  if (!form) return;
-
-  const progress = document.querySelector('#' + form.getAttribute('data-widget-progress'));
-  const content = document.querySelector('#' + form.getAttribute('data-widget-content'));
-  const input = form.querySelector('input');
-  const btn = form.querySelector('button[type="submit"]');
-
-  const close = form.querySelector('.tracking-widget__btn-close')
-
-  if (!progress || !content) return;
+  if (!search || !btn || !close) return;
 
   const postData = async (url, data) => {
     let res = await fetch(url, {
       method: "POST",
       body: data
     })
-    return await res
+    return res
   }
 
-  if (close) {
-    close.addEventListener('click', () => {
-      overlay.classList.remove('tracking-widget__inner-show');
-      input.value = '';
-      btn.classList.remove('top__search-btn--active');
-      progress.classList.remove('top__progress-line-bg--active');
-    })
-  }
 
-  form.addEventListener('submit', (e) => {
+  close.addEventListener('click', () => {
+    input.value = '';
+    btn.classList.remove('top__search-btn--active');
+    progress.classList.remove('top__progress-line-bg--active');
+  })
 
-    let count = 0;
+  search.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (!input || input.value.toString().replace(/\s/g, '') == '') return;
 
-    const formData = new FormData(form)
-
-    btn.classList.add('top__search-btn--active');
-    progress.classList.toggle('top__progress-line-bg--active');
-    setAnimate(progress, 'start', btn);
-
+    const formData = new FormData(search)
     const response = postData('/ajax-iframe', formData)
       .then(response => response.text())
       .then(data => {
-        setAnimate(progress, 'end', btn);
-        content.innerHTML = data;
+        document.getElementById("result_ajax").innerHTML = data
       })
       .catch(() => console.log('no'))
-      .finally(() => {})
+      .finally(() => {
+        //overlay.classList.add('tracking-widget__inner-show')
+      })
+
+    //console.log('response ', response.json())
+    // if (response) {
+    //   overlay.innerHTML = ''
+    //   overlay = response
+    // }
 
   })
+
 }
 
-const setAnimate = (progress, func, btn) => {
 
+
+window.addEventListener('load', () => {
+  //РїРѕРёСЃРє РЅР° РєРЅРѕРїРєРµ start
+  let elem = document.getElementById('top__progress-line');
   let count = 0;
+  let idInterval;
+  const searchBtn = document.querySelector('.top__search-btn');
+  const progressBar = document.querySelector('.top__progress-line-bg');
 
+  function searchSpinner() {
+    searchBtn.addEventListener('click', () => {
+      searchBtn.classList.toggle('top__search-btn--active');
+      progressBar.classList.toggle('top__progress-line-bg--active');
+      animate();
+      count = 0;
+    });
+  }
+  searchSpinner();
+  //Р°РЅРёРјР°С†РёСЏ Р·Р°РіСЂСѓР·РєРё
   function animate() {
-    let idInterval = requestAnimationFrame(animate);
+    idInterval = requestAnimationFrame(animate);
     if (count < 80) {
       count++
-      progress.style.width = count + '%';
+      elem.style.width = count + '%';
     } else if (count = 80) {
       cancelAnimationFrame(idInterval);
     }
   };
-
-  //докрутка полосы загрузки
+  //РґРѕРєСЂСѓС‚РєР° РїРѕР»РѕСЃС‹ Р·Р°РіСЂСѓР·РєРё
   function fullDownload() {
     let idInterval = requestAnimationFrame(fullDownload);
     if (count < 100) {
       count++
-      progress.style.width = count + '%';
+      elem.style.width = count + '%';
     } else if (count >= 100) {
       cancelAnimationFrame(idInterval);
       count = 0;
-      btn.classList.remove('top__search-btn--active');
-      progress.classList.remove('top__progress-line-bg--active');
+      searchBtn.classList.remove('top__search-btn--active');
+      progressBar.classList.remove('top__progress-line-bg--active');
     }
   }
 
-  if (func == 'start') animate();
-  else fullDownload()
-}
-
-window.addEventListener('load', () => {
   setSearch()
 })
+//РїРѕРёСЃРє РЅР° РєРЅРѕРїРєРµ End
 
-//Трек номер на форме поиска
+//РўСЂРµРє РЅРѕРјРµСЂ РЅР° С„РѕСЂРјРµ РїРѕРёСЃРєР°
 const searchTreck = () => {
   const treckNum = document.querySelectorAll('.top__search-link');
   let inputForm = document.querySelector('.top__search-input');
@@ -123,7 +127,7 @@ const searchTreck = () => {
 }
 searchTreck();
 
-//Переключатель языков
+//РџРµСЂРµРєР»СЋС‡Р°С‚РµР»СЊ СЏР·С‹РєРѕРІ
 const removeFlag = () => {
   const boxFlag = document.querySelector('.header__lang-box');
   const dropDown = document.querySelector('.header__dropdown');

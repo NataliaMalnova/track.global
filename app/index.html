@@ -66,9 +66,7 @@
   </header>
 
   <main class="main">
-
     <section class="home">
-
       <section class="top">
         <div class="top__bg">
           <div class="container">
@@ -93,49 +91,53 @@
                   <a href="#">ASOS</a>
                 </div>
                 <img class="top__img-mob" src="images/home-bg.svg" alt="декоративное изображение">
-                <div class="top__search">
-                  <div class="top__search-box">
-                    <label class="top__search-label">
-                      <input class="top__search-input" type="text" placeholder="введите номер отслеживания">
-                    </label>
-                    <button class="top__search-btn">
-                      <div class="top__btn-spiner" id="circularG">
-                        <div id="circularG_1" class="circularG"></div>
-                        <div id="circularG_2" class="circularG"></div>
-                        <div id="circularG_3" class="circularG"></div>
-                        <div id="circularG_4" class="circularG"></div>
-                        <div id="circularG_5" class="circularG"></div>
-                        <div id="circularG_6" class="circularG"></div>
-                        <div id="circularG_7" class="circularG"></div>
-                        <div id="circularG_8" class="circularG"></div>
-                      </div>
-                      <span class="top__btn-text">отследить</span>
-                      <span class="top__btn-text--active">поиск</span>
-                    </button>
+                <form action="" class="tracking-widget-form" data-widget-progress="widgetProgressMain"
+                  data-widget-content="widgetContentMain">
+                  <div class="top__search">
+                    <div class="top__search-box">
+                      <label class="top__search-label">
+                        <input class="top__search-input tracking-input" type="text"
+                          placeholder="введите номер отслеживания">
+                      </label>
+                      <button class="top__search-btn" type="submit">
+                        <div class="top__btn-spiner" id="circularG">
+                          <div id="circularG_1" class="circularG"></div>
+                          <div id="circularG_2" class="circularG"></div>
+                          <div id="circularG_3" class="circularG"></div>
+                          <div id="circularG_4" class="circularG"></div>
+                          <div id="circularG_5" class="circularG"></div>
+                          <div id="circularG_6" class="circularG"></div>
+                          <div id="circularG_7" class="circularG"></div>
+                          <div id="circularG_8" class="circularG"></div>
+                        </div>
+                        <span class="top__btn-text">отследить</span>
+                        <span class="top__btn-text--active">поиск</span>
+                      </button>
+                    </div>
+                    <div class="top__search-links">
+                      <a class="top__search-link" href="#">
+                        RB345686965CG
+                      </a>
+                      <a class="top__search-link" href="#">
+                        RB345686965CG
+                      </a>
+                      <a class="top__search-link" href="#">
+                        RB345686965CG
+                      </a>
+                    </div>
                   </div>
-                  <div class="top__search-links">
-                    <a class="top__search-link" href="#">
-                      RB345686965CG
-                    </a>
-                    <a class="top__search-link" href="#">
-                      RB345686965CG
-                    </a>
-                    <a class="top__search-link" href="#">
-                      RB345686965CG
-                    </a>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
-          <div class="top__progress-line-bg">
+          <div class="top__progress-line-bg" id="widgetProgressMain">
             <div class="top__progress-line" id="top__progress-line"></div>
           </div>
         </div>
       </section>
 
       <section class="process">
-        <section class="tracking-widget">
+        <section class="tracking-widget" id="widgetContentMain">
           <div class="container">
             <div class="tracking-widget__inner">
               <div class="tracking-widget__wrapper">

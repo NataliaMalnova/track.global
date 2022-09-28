@@ -4,6 +4,7 @@
   position: relative;
   background: #fff;
   width: 100%;
+  margin: 0 auto;
 
   .container {
     @include for-470-px {
@@ -107,10 +108,10 @@
   }
 
   &__inner {
-    //display: grid;
+    display: grid;
     grid-template-columns: minmax(500px, 1fr) minmax(300px, 354px);
     column-gap: 30px;
-    display: none;
+    //display: none;
     margin-top: 40px;
     overflow: hidden;
 
