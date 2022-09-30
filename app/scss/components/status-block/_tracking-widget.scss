@@ -120,8 +120,8 @@
     }
 
     @include for-1025-px {
-      // display: flex;
-      //  flex-direction: column;
+      display: flex;
+      flex-direction: column;
     }
   }
 

@@ -17,97 +17,7 @@ const hamburger = () => {
 }
 hamburger();
 
-const setSearch = () => {
 
-  const form = document.querySelector('.tracking-widget-form');
-
-  if (!form) return;
-
-  const progress = document.querySelector('#' + form.getAttribute('data-widget-progress'));
-  const content = document.querySelector('#' + form.getAttribute('data-widget-content'));
-  const input = form.querySelector('input');
-  const btn = form.querySelector('button[type="submit"]');
-
-  const close = form.querySelector('.tracking-widget__btn-close')
-
-  if (!progress || !content) return;
-
-  const postData = async (url, data) => {
-    let res = await fetch(url, {
-      method: "POST",
-      body: data
-    })
-    return await res
-  }
-
-  if (close) {
-    close.addEventListener('click', () => {
-      content.innerHTML = '';
-      input.value = '';
-      btn.classList.remove('top__search-btn--active');
-      progress.classList.remove('top__progress-line-bg--active');
-    })
-  }
-
-  form.addEventListener('submit', (e) => {
-
-    let count = 0;
-    e.preventDefault();
-    if (!input || input.value.toString().replace(/\s/g, '') == '') return;
-
-    const formData = new FormData(form)
-
-    btn.classList.add('top__search-btn--active');
-    progress.classList.toggle('top__progress-line-bg--active');
-    setAnimate(progress, 'start', btn);
-
-    const response = postData('/ajax-iframe', formData)
-      .then(response => response.text())
-      .then(data => {
-        setAnimate(progress, 'end', btn);
-        content.innerHTML = data;
-      })
-      .catch(() => console.log('no'))
-      .finally(() => {})
-
-  })
-}
-
-const setAnimate = (progress, func, btn) => {
-
-  let count = 0;
-
-  function animate() {
-    let idInterval = requestAnimationFrame(animate);
-    if (count < 80) {
-      count++
-      progress.style.width = count + '%';
-    } else if (count = 80) {
-      cancelAnimationFrame(idInterval);
-    }
-  };
-
-  //докрутка полосы загрузки
-  function fullDownload() {
-    let idInterval = requestAnimationFrame(fullDownload);
-    if (count < 100) {
-      count++
-      progress.style.width = count + '%';
-    } else if (count >= 100) {
-      cancelAnimationFrame(idInterval);
-      count = 0;
-      btn.classList.remove('top__search-btn--active');
-      progress.classList.remove('top__progress-line-bg--active');
-    }
-  }
-
-  if (func == 'start') animate();
-  else fullDownload()
-}
-
-window.addEventListener('load', () => {
-  setSearch()
-})
 
 //Трек номер на форме поиска
 const searchTreck = () => {
@@ -437,9 +347,6 @@ const copyTx = () => {
   })
 }
 
-copyTx()
-
-
 const changeSettings = () => {
 
   const settings = document.querySelector('.settings');
@@ -525,4 +432,128 @@ const changeSettings = () => {
   }
 }
 
-changeSettings()
+const setAnimate = (progress, func, btn) => {
+
+  let count = 0;
+
+  function animate() {
+    let idInterval = requestAnimationFrame(animate);
+    if (count < 80) {
+      count++
+      progress.style.width = count + '%';
+    } else if (count = 80) {
+      cancelAnimationFrame(idInterval);
+    }
+  };
+
+  //докрутка полосы загрузки
+  function fullDownload() {
+    let idInterval = requestAnimationFrame(fullDownload);
+    if (count < 100) {
+      count++
+      progress.style.width = count + '%';
+    } else if (count >= 100) {
+      cancelAnimationFrame(idInterval);
+      count = 0;
+      btn.classList.remove('top__search-btn--active');
+      progress.classList.remove('top__progress-line-bg--active');
+    }
+  }
+
+  if (func == 'start') {
+    animate();
+  } else {
+    count = 80;
+    fullDownload()
+  }
+}
+
+window.addEventListener('load', () => {
+  changeSettings()
+  copyTx()
+})
+
+function ajaxTrack(track, progress, btn) {
+  $.get('/ajax-track', {
+    track: track
+  }, function (html) {
+    $('#widgetContentMain').html(html)
+    window.history.pushState('track.' + track, document.title, '/tracking/' + track);
+    setAnimate(progress, 'end', btn);
+  })
+}
+
+function ajaxTrackPost(track, progress, btn) {
+  $.post('/ajax-iframe', {
+    track: track
+  }, function (html) {
+    $('#widgetContentMain').html(html)
+    setAnimate(progress, 'end', btn);
+  })
+}
+
+const postData = async (url, data) => {
+  let res = await fetch(url, {
+    method: "POST",
+    body: data
+  })
+  return await res
+}
+
+$(function (e) {
+
+  const forms = document.querySelectorAll('.tracking-widget-form');
+
+  forms.forEach(form => {
+    const progress = document.querySelector('#' + form.getAttribute('data-widget-progress'));
+    const content = document.querySelector('#' + form.getAttribute('data-widget-content'));
+    const input = form.querySelector('input');
+    const btn = form.querySelector('button[type="submit"]');
+
+    const close = form.querySelector('.tracking-widget__btn-close')
+
+    if (!progress || !content) return;
+
+    if (close) {
+      close.addEventListener('click', () => {
+        content.innerHTML = '';
+        input.value = '';
+        btn.classList.remove('top__search-btn--active');
+        progress.classList.remove('top__progress-line-bg--active');
+      })
+    }
+
+    if (input && input.value.toString().replace(/\s/g, '') != '') {
+      btn.classList.add('top__search-btn--active');
+      progress.classList.toggle('top__progress-line-bg--active');
+      setAnimate(progress, 'start', btn);
+
+      ajaxTrack(input.value, progress, btn)
+    }
+
+    btn.addEventListener('click', (e) => {
+
+      e.preventDefault();
+      if (!input || input.value.toString().replace(/\s/g, '') == '') return;
+
+      btn.classList.add('top__search-btn--active');
+      progress.classList.toggle('top__progress-line-bg--active');
+      setAnimate(progress, 'start', btn);
+
+      if (form.classList.contains('tracking-widget-form-post')) {
+        const formData = new FormData(form)
+        const response = postData('/ajax-iframe', formData)
+          .then(response => response.text())
+          .then(data => {
+            setAnimate(progress, 'end', btn);
+            content.innerHTML = data;
+          })
+          .catch(() => console.log('no'))
+          .finally(() => {})
+      } else {
+        ajaxTrack(input.value, progress, btn)
+      }
+    });
+  });
+
+})
