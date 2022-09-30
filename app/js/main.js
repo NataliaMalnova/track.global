@@ -435,12 +435,13 @@ const changeSettings = () => {
 const setAnimate = (progress, func, btn) => {
 
   let count = 0;
+  const progresPercent = progress.querySelector('.top__progress-line')
 
   function animate() {
     let idInterval = requestAnimationFrame(animate);
     if (count < 80) {
       count++
-      progress.style.width = count + '%';
+      progresPercent.style.width = count + '%';
     } else if (count = 80) {
       cancelAnimationFrame(idInterval);
     }
@@ -451,7 +452,7 @@ const setAnimate = (progress, func, btn) => {
     let idInterval = requestAnimationFrame(fullDownload);
     if (count < 100) {
       count++
-      progress.style.width = count + '%';
+      progresPercent.style.width = count + '%';
     } else if (count >= 100) {
       cancelAnimationFrame(idInterval);
       count = 0;
@@ -510,7 +511,8 @@ $(function (e) {
     const input = form.querySelector('input');
     const btn = form.querySelector('button[type="submit"]');
 
-    const close = form.querySelector('.tracking-widget__btn-close')
+    const close = form.querySelector('.tracking-widget__btn-close');
+
 
     if (!progress || !content) return;
 

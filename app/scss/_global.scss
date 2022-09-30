@@ -64,7 +64,7 @@ img {
     &::before {
       content: "";
       position: absolute;
-      background-image: url('../images/icons/arrow-right.svg');
+      background-image: url("../images/icons/arrow-right.svg");
       background-repeat: no-repeat;
       background-size: cover;
       width: 5px;
@@ -87,12 +87,11 @@ img {
     color: $accent;
     text-decoration: underline;
     display: flex;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
       margin-top: -5px;
     }
-
   }
 
   &__link-lats {
@@ -123,7 +122,6 @@ img {
     justify-content: center;
     align-items: center;
 
-
     &:not(:last-child) {
       margin-right: 10px;
     }
@@ -133,12 +131,12 @@ img {
   &__next {
     display: block;
     padding: 7px 11px;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     font-size: 14px;
     line-height: 16px;
     color: #979797;
     border-radius: 2px;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
       font-weight: 700;
@@ -152,4 +150,8 @@ img {
     color: #ffffff;
     background-color: $accent;
   }
+}
+
+.mt-40 {
+  margin-top: 40px;
 }
