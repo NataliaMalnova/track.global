@@ -15,18 +15,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 16px;
+    @include for-470-px {
+      margin-top: 6px;
+    }
   }
 
   &__logo {
     display: flex;
     align-items: center;
-    margin-top: 16px;
     z-index: 100;
     position: relative;
-
-    @include for-470-px {
-      margin-top: 6px;
-    }
   }
 
   &__logo-img-one {
@@ -102,7 +101,7 @@
     &::before {
       content: "";
       position: absolute;
-      top: -31px;
+      top: -40px;
       left: 0;
       right: 0;
       height: 5px;

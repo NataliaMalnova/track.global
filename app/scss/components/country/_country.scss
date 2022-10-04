@@ -1,5 +1,4 @@
 .country {
-
   .container {
     @include for-470-px {
       padding: 0 10px;
@@ -36,9 +35,9 @@
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
-      background-image: url('../images/country/top-bg.png');
+      background-image: url("../images/country/top-bg.png");
       background-repeat: no-repeat;
       background-size: contain;
       left: -50px;
@@ -161,13 +160,6 @@
     }
   }
 
-  .top__search {
-    @include for-769-px {
-      margin-bottom: 10px;
-      margin-bottom: 0;
-    }
-  }
-
   .breadcrumbs {
     margin-bottom: 30px;
 
@@ -218,7 +210,8 @@
   }
 
   &__list {
-    @include for-1025-px {}
+    @include for-1025-px {
+    }
 
     @include for-470-px {
       &:not(:last-child) {
@@ -252,11 +245,11 @@
 
   &__item-link {
     padding: 15px;
-    border: 1px solid #E6E6E6;
+    border: 1px solid #e6e6e6;
     border-radius: 3px;
     display: flex;
     align-items: center;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
       transform: scale(1.1);

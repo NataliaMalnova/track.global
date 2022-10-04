@@ -35,6 +35,10 @@
       font-size: 25px;
       line-height: 30px;
       text-align: center;
+      margin-top: 25px;
+    }
+    @include for-470-px {
+      margin-top: 10px;
     }
   }
 
@@ -77,11 +81,6 @@
     z-index: 10;
 
     @include for-725-px {
-      position: absolute;
-      margin: 0 -10px;
-      left: 0;
-      right: 0;
-      bottom: 0;
       padding: 20px 10px;
       padding-bottom: 12px;
     }

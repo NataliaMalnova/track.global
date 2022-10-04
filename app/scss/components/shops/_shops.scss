@@ -34,9 +34,9 @@
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
-      background-image: url('../images/shops/shop-bg.svg');
+      background-image: url("../images/shops/shop-bg.svg");
       background-repeat: no-repeat;
       background-size: contain;
       left: -50px;
@@ -168,13 +168,6 @@
     }
   }
 
-  .top__search {
-    @include for-769-px {
-      margin-bottom: 10px;
-      margin-bottom: 0;
-    }
-  }
-
   .breadcrumbs {
     @include for-470-px {
       display: none;
@@ -225,7 +218,7 @@
 
   &__item {
     padding: 20px;
-    border: 1px solid #E6E6E6;
+    border: 1px solid #e6e6e6;
     border-radius: 3px;
     display: flex;
     flex-direction: column;
@@ -234,7 +227,7 @@
   }
 
   &__item-logo {
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
       // margin-top: -5px;
@@ -266,7 +259,7 @@
     font-size: 20px;
     line-height: 24px;
     margin-bottom: 5px;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
       color: $accent;
@@ -301,7 +294,7 @@
     line-height: 17px;
     color: $accent;
     text-decoration: underline;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
       font-size: 16px;

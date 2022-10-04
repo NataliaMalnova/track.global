@@ -6,14 +6,12 @@
   }
 
   .header {
-    background: linear-gradient(360deg, #E9E9E9 0%, rgba(238, 234, 234, 0) 71.82%);
+    background: linear-gradient(
+      360deg,
+      #e9e9e9 0%,
+      rgba(238, 234, 234, 0) 71.82%
+    );
     padding: 10px 0;
-  }
-
-  .header__logo {
-    @include for-769-px {
-      margin-top: 0;
-    }
   }
 
   .top__search-btn {
@@ -114,7 +112,7 @@
     &:nth-child(9),
     &:nth-child(11),
     &:nth-child(14) {
-      background-color: #FCFCFC;
+      background-color: #fcfcfc;
     }
 
     @include for-1025-px {
@@ -133,10 +131,9 @@
 
     @include for-470-px {
       padding: 10px;
-      min-height: 68px
+      min-height: 68px;
     }
   }
-
 
   &__content-item-num {
     @extend %Mont-500;
@@ -189,19 +186,19 @@
 
   &__content-item-num--top {
     &::before {
-      content: 'Формат номера';
+      content: "Формат номера";
     }
   }
 
   &__content-item-service--top {
     &::before {
-      content: 'Служба доставки';
+      content: "Служба доставки";
     }
   }
 
   &__content-item-period--top {
     &::before {
-      content: 'Сроки доставки';
+      content: "Сроки доставки";
       right: 0;
       text-align: right;
     }
