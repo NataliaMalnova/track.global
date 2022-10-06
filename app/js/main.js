@@ -350,9 +350,8 @@ const copyTx = () => {
 const changeSettings = () => {
 
   const settings = document.querySelector('.settings');
-  const content = document.querySelector('.settings .tracking-widget__inner');
 
-  if (!settings || !content) return;
+  if (!settings) return;
 
   const lang = settings.querySelectorAll('input[name="settings_language"]');
   const width = settings.querySelector('#rangeWidth');
@@ -399,13 +398,22 @@ const changeSettings = () => {
 
   const changeSearch = () => {
 
-    const search = document.querySelector('.tracking-widget');
-
+    const search = document.querySelector('.tracking-widget-form');
     if (!search) return;
+    const progress = document.querySelector('#' + search.getAttribute('data-widget-progress'));
+    const content = document.querySelector('#' + search.getAttribute('data-widget-content'));
+    const input = search.querySelector('input');
+    const btn = search.querySelector('button[type="submit"]');
+    const close = search.querySelector('.tracking-widget__btn-close');
 
-    const input = search.querySelector('.tracking-widget__input');
-    search.style.maxWidth = setWidth + 'px'
-    input.style.height = setHeight + 'px'
+    if (!progress || !content) return;
+
+    const contentWrap = content.querySelector('.tracking-widget');
+    if (contentWrap) contentWrap.style.maxWidth = setWidth + 'px';
+
+    search.style.maxWidth = setWidth + 'px';
+    input.style.height = setHeight + 'px';
+
 
     if (setType == 'contentShift')
       content.classList.remove('tracking-widget--absolute')
@@ -513,7 +521,6 @@ $(function (e) {
 
     const close = form.querySelector('.tracking-widget__btn-close');
 
-
     if (!progress || !content) return;
 
     if (close) {
@@ -534,7 +541,6 @@ $(function (e) {
     }
 
     btn.addEventListener('click', (e) => {
-
       e.preventDefault();
       if (!input || input.value.toString().replace(/\s/g, '') == '') return;
 

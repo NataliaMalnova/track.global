@@ -153,6 +153,7 @@
     width: 136px;
     height: 40px;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     background-color: $accent;
@@ -432,4 +433,9 @@
     border-radius: 10px;
     height: 10px;
   }
+}
+
+.tracking-widget__top--transparent {
+  background: none;
+  padding-bottom: 0;
 }

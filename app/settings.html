@@ -7,11 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Пример работы виджета</title>
   <link rel="stylesheet" href="css/style.min.css">
-  <script src="js/main.min.js" defer></script>
+  <script src="https://devtracking.ru/assets/d7feb119/jquery.js"></script>
+  <script src="https://devtracking.ru/js/jquery.rateyo.js"></script>
+  <script src="js/main.js" defer></script>
 </head>
 
 <body>
-  <header class="header header-grey ">
+  <header class="header header-grey">
     <div class="container">
       <nav class="header__nav">
         <a class="header__logo" href="#">
@@ -70,9 +72,13 @@
         <h1 class="top__title">
           Пример работы виджета
         </h1>
-        <section class="tracking-widget">
-          <div class="tracking-widget__top">
-            <div class="tracking-widget__top-input top">
+      </div>
+      <div class="container">
+        <form class="tracking-widget-form position-relative" data-widget-progress="widgetProgressMain"
+          data-widget-content="widgetContentMain">
+
+          <div class="tracking-widget__top top tracking-widget__top--transparent">
+            <div class="tracking-widget__top-input ">
               <label class="tracking-widget__label">
                 <input class="tracking-widget__input" type="text" placeholder="введите название">
               </label>
@@ -90,19 +96,24 @@
                 <span class="top__btn-text">отследить</span>
                 <span class="top__btn-text--active">поиск</span>
               </button>
-              <button class="tracking-widget__btn">
+              <button class="tracking-widget__btn tracking-widget__btn-close" type="button">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
                     fill="#263238" />
                 </svg>
               </button>
-              <div class="top__progress-line-bg">
-                <div class="top__progress-line" id="top__progress-line"></div>
-              </div>
+
             </div>
-            <div></div>
           </div>
+          <div class="top__progress-line-bg top__progress-line-bg--margin" id="widgetProgressMain">
+            <div class="top__progress-line" id="top__progress-line"></div>
+          </div>
+
+        </form>
+      </div>
+      <section id="widgetContentMain">
+        <div class="tracking-widget">
           <div class="tracking-widget__inner">
             <div class="tracking-widget__wrapper">
               <div class="tracking-widget__head">
@@ -794,7 +805,8 @@
             </div>
           </div>
 
-        </section>
+        </div>
+      </section>
       </div>
       <div class="container">
         <form action="" method="post" class="settings-form">
