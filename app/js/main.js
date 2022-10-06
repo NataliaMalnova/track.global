@@ -408,17 +408,21 @@ const changeSettings = () => {
 
     if (!progress || !content) return;
 
-    const contentWrap = content.querySelector('.tracking-widget');
-    if (contentWrap) contentWrap.style.maxWidth = setWidth + 'px';
+    // const contentWrap = content.querySelector('.tracking-widget');
+    // if (contentWrap) contentWrap.style.maxWidth = setWidth + 'px';
+    content.style.maxWidth = setWidth + 'px';
 
     search.style.maxWidth = setWidth + 'px';
     input.style.height = setHeight + 'px';
 
 
-    if (setType == 'contentShift')
-      content.classList.remove('tracking-widget--absolute')
-    else
-      content.classList.add('tracking-widget--absolute')
+    if (setType == 'contentShift') {
+      const contentWrap = content.querySelector('.tracking-widget');
+      if (contentWrap) contentWrap.classList.remove('tracking-widget--absolute')
+    } else {
+      const contentWrap = content.querySelector('.tracking-widget');
+      if (contentWrap) contentWrap.classList.add('tracking-widget--absolute')
+    }
 
 
     const frame = document.querySelector('.track-button-code');
