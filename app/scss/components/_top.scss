@@ -133,18 +133,20 @@
     border-radius: 3px;
     border: transparent;
     outline: transparent;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 17px;
 
     &::placeholder {
       color: #c4c4c4;
+      @include for-470-px {
+        font-size: 10px;
+      }
     }
 
     @include for-470-px {
       border-radius: 3px 0 0 3px;
       height: 30px;
       padding: 9px 9px 10px 27px;
-      font-size: 10px;
       line-height: 12px;
     }
   }
