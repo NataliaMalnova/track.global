@@ -405,6 +405,7 @@ const changeSettings = () => {
     const input = search.querySelector('input');
     const btn = search.querySelector('button[type="submit"]');
     const close = search.querySelector('.tracking-widget__btn-close');
+    const clear = content.querySelector('.tracking-widget__inner-btn-close');
 
     if (!progress || !content) return;
 
@@ -414,7 +415,6 @@ const changeSettings = () => {
 
     search.style.maxWidth = setWidth + 'px';
     input.style.height = setHeight + 'px';
-
 
     if (setType == 'contentShift') {
       const contentWrap = content.querySelector('.tracking-widget');
@@ -566,6 +566,19 @@ $(function (e) {
         ajaxTrack(input.value, progress, btn)
       }
     });
+
+
+    const clear = form.querySelector('.tracking-widget__inner-btn-close');
+
+    if (clear) {
+      clear.addEventListener('click', () => {
+        console.log('click')
+        content.innerHTML = '';
+        input.value = '';
+        btn.classList.remove('top__search-btn--active');
+        progress.classList.remove('top__progress-line-bg--active');
+      })
+    }
   });
 
 })
